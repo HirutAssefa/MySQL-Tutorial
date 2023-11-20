@@ -213,26 +213,33 @@ Table: Movies
 ### Task 1: Find the movie with a row id of 6:
 
 SELECT * FROM Movies
+
 WHERE Id = 6;
 
 ### Task 2: Find the movies released in the years between 2000 and 2010:
 
 SELECT * FROM Movies
+
 WHERE Year
+
 BETWEEN 2000 AND 2010;
+
 
 ### Task 3: Find the movies not released in the years between 2000 and 2010:
 
 SELECT * FROM Movies
+
 WHERE Year
+
 NOT BETWEEN 2000 AND 2010;
 
 ### Task 4:Find the first 5 Pixar movies and their release year:
 
 SELECT title, year FROM movies
+
 WHERE year <= 2003;
 
-## SQL Lesson 3: Queries with constraints (Pt. 2)
+## Lesson 3: Queries with constraints (Pt. 2)
 
 Continue working with constraints, introducing logical operators.
 
@@ -261,48 +268,61 @@ Table: Movies
 ### Task 1: Find all the Toy Story movies
 
 SELECT title, director FROM movies
+
 WHERE title LIKE "Toy Story%";
 
 ### Task 2: Find all the movies directed by John Lasseter
 
 SELECT * FROM Movies
+
 WHERE Director Like "john Lasseter";
 
 ### Task 3: Find all the movies (and director) not directed by John Lasseter
 
 SELECT * FROM Movies
+
 WHERE Director NOT LIKE 'john Lasseter';
 
 ### Task 4: Find all the WALL-* movies
 
 SELECT * FROM Movies
+
 WHERE Title LIKE 'WALL%';
 
 ---
 
-## SQL Lesson 4: Filtering and sorting Query results
+## Lesson 4: Filtering and sorting Query results
 
 Learn how to order and filter query results to meet specific requirements.
 
 4.1 Select query with unique results (DISTINCT remove duplicates)
 
 SELECT DISTINCT column, another_column, …
+
 FROM mytable
+
 WHERE condition(s);
 
 4.2 Select query with unique results (DISTINCT remove duplicates)
 
 SELECT column, another_column, …
+
 FROM mytable
+
 WHERE condition(s)
+
 ORDER BY column ASC/DESC;
 
 4.3 Select query with limited rows
 
 SELECT column, another_column, …
+
 FROM mytable
+
 WHERE condition(s)
+
 ORDER BY column ASC/DESC
+
 LIMIT num_limit OFFSET num_offset;;
 
 ### Exercise:
@@ -331,42 +351,46 @@ Table: Movies
 
 ### Task 1: List all directors of Pixar movies (alphabetically), without duplicates
 
-```sql
 SELECT DISTINCT director FROM movies
+
 ORDER BY director ASC;
 
 ### Task 2: List the last four Pixar movies released (ordered from most recent to least)
 
-```sql
 SELECT title, year FROM movies
-ORDER BY year DESC
-LIMIT 4;
 
+ORDER BY year DESC
+
+LIMIT 4;
 
 ### Task 3: List the first five Pixar movies sorted alphabetically
 
-```sql
 SELECT * FROM Movies
+
 ORDER BY Title ASC
+
 LIMIT 5;
 
-### Task 4:List the next five Pixar movies sorted alphabetically
+### Task 4: List the next five Pixar movies sorted alphabetically
 
-```sql
 SELECT title FROM movies
+
 ORDER BY title ASC
+
 LIMIT 5 OFFSET 5;
 
 ### Task 5: List five movies starting from the 4th row:
 
-```sql
 SELECT *FROM movies
+
 ORDER BY title ASC
+
 LIMIT 5 OFFSET 3;
 
 SUMMARY EXERCISES
 
 Table: North_american_cities
+
 | City                | Country         | Population | Latitude   | Longitude   |
 | ------------------- | --------------- | ---------- | ---------- | ----------- |
 | Guadalajara         | Mexico          | 1,500,800  | 20.659699  | -103.349609 |
@@ -389,84 +413,101 @@ Table: North_american_cities
 **Note**: above task can be answered using two options
 
 **Option 1**
-```sql
+
 SELECT city, Population
+
 FROM North_american_cities
+
 WHERE country LIKE 'Canada';
 
 **Option 2**
 
 SELECT City, Population FROM North_american_cities
+
 WHERE Country = 'Canada';
 
-### Task 2:Order all the cities in the United States by their latitude from north to south
+### Task 2: Order all the cities in the United States by their latitude from north to south
 
-```sql
 SELECT city, latitude FROM north_american_cities
+
 WHERE country = "United States"
+
 ORDER BY latitude DESC;
 
 ### Task 3: List all the cities west of Chicago, ordered from west to east
 
 **option 1**
-```sql
+
 SELECT city, longitude FROM north_american_cities
+
 WHERE longitude < -87.629798
+
 ORDER BY longitude ASC;
 
 **option 2**
 
 SELECT City, Longitude FROM North_american_cities
+
 WHERE Longitude < (SELECT Longitude FROM North_american_cities WHERE City = 'Chicago')
+
 ORDER BY Longitude ASC;
 
-### Task 4:List the two largest cities in Mexico (by population)
+### Task 4: List the two largest cities in Mexico (by population)
 
-```sql
 SELECT city, population FROM north_american_cities
+
 WHERE country LIKE "Mexico"
+
 ORDER BY population DESC
+
 LIMIT 2;
 
-
-
-### Task 5:List the third and fourth largest cities (by population) in the United States and their population
+### Task 5: List the third and fourth largest cities (by population) in the United States and their population
 
 **option 1**
-```sql
+
 SELECT city, population FROM north_american_cities
+
 WHERE country LIKE "United States"
+
 ORDER BY population DESC
+
 LIMIT 2 OFFSET 2;
 
 **option 2**
-```sql
+
 SELECT City, Population FROM North_american_cities
+
 WHERE Country = 'United States'
+
 ORDER BY Population DESC
+
 LIMIT 2 OFFSET 2;
+
 ---
 
-## SQL Lesson 6:
+## Lesson 6:
 
 So far, we've been dealing with one table. In the real world, information about things is often divided and spread across different tables. This process is called normalization.
 
 6.1 Multi-table queries with JOINs
-Explore JOIN operations to retrieve data from multiple tables.
 
-Tables that share information about a single entity need to have a primary key that identifies that entity uniquely across the database. One common primary key type is an auto-incrementing integer (because they are space efficient), but it can also be a string, hashed value, so long as it is unique.
+Explore JOIN operations to retrieve data from multiple tables. Tables that share information about a single entity need to have a primary key that identifies that entity uniquely across the database. One common primary key type is an auto-incrementing integer (because they are space efficient), but it can also be a string, hashed value, so long as it is unique. Using the JOIN clause in a query, we can combine row data across two separate tables using this unique key. The first of the joins that we will introduce is the INNER JOIN.
 
-Using the JOIN clause in a query, we can combine row data across two separate tables using this unique key. The first of the joins that we will introduce is the INNER JOIN.
-
-**usage**
-Select query with INNER JOIN on multiple tables
+**usage** : Select query with INNER JOIN on multiple tables
 
 SELECT column, another_table_column, …
+
 FROM mytable
+
 INNER JOIN another_table
+
     ON mytable.id = another_table.id
+    
 WHERE condition(s)
+
 ORDER BY column, … ASC/DESC
+
 LIMIT num_limit OFFSET num_offset;
 
 The INNER JOIN is a process that matches rows from the first table and the second table which have the same key (as defined by the ON constraint) to create a result row with the combined columns from both tables. After the tables are joined, the other clauses we learned previously are then applied.
@@ -475,7 +516,8 @@ The INNER JOIN is a process that matches rows from the first table and the secon
 
 We've added a new table to the Pixar database so that you can try practicing some joins. The BoxOffice table stores information about the ratings and sales of each particular Pixar movie, and the Movie_id column in that table corresponds with the Id column in the Movies table 1-to-1. Try and solve the tasks below using the INNER JOIN introduced above.
 
-Table: Movies (Read-Only)
+Table: Movies 
+
 | Id | Title           | Director       | Year | Length_minutes |
 |----|-----------------|-----------------|------|----------------|
 | 1  | Toy Story       | John Lasseter   | 1995 | 81             |
@@ -483,9 +525,8 @@ Table: Movies (Read-Only)
 | 3  | Toy Story 2     | John Lasseter   | 1999 | 93             |
 | 4  | Monsters, Inc.  | Pete Docter     | 2001 | 92             |
 
----
 
-Table: Boxoffice (Read-Only)
+Table: Boxoffice 
 
 | Movie_id | Rating | Domestic_sales | International_sales |
 |----------|--------|-----------------|----------------------|
@@ -504,61 +545,73 @@ Table: Boxoffice (Read-Only)
 | 2        | 7.2    | 162,798,565     | 200,600,000          |
 | 13       | 7.2    | 237,283,207     | 301,700,000          |
 
----
-
 Exercise 6 — Tasks
 
 1. Find the domestic and international sales for each movie
 
-```sql
 SELECT title, domestic_sales, international_sales
+
 FROM movies
+
   JOIN boxoffice
+  
     ON movies.id = boxoffice.movie_id;
 
 2. Show the sales numbers for each movie that did better internationally rather than domestically
 
 SELECT title, domestic_sales, international_sales
+
 FROM movies
+
   JOIN boxoffice
+  
     ON movies.id = boxoffice.movie_id
+    
 WHERE international_sales > domestic_sales;
 
 3. List all the movies by their ratings in descending order
 
 SELECT title, rating
-FROM movies
+
+FROM 
+
   JOIN boxoffice
+  
     ON movies.id = boxoffice.movie_id
+    
 ORDER BY rating DESC;
 
 ---
 
-## SQL Lesson 7: OUTER JOINs
+## Lesson 7: OUTER JOINs
 
-Understand and practice using OUTER JOINs to include unmatched rows in the result set. Depending on how you want to analyze the data, the INNER JOIN we used last lesson might not be sufficient because the resulting table only contains data that belongs in both of the tables.
+Understand and practice using OUTER JOINs to include unmatched rows in the result set. Depending on how you want to analyze the data, the INNER JOIN we used last lesson might not be sufficient because the resulting table only contains data that belongs in both of the tables. If the two tables have asymmetric data, which can easily happen when data is entered in different stages, then we would have to use a LEFT JOIN, RIGHT JOIN or FULL JOIN instead to ensure that the data you need is not left out of the results.
 
-If the two tables have asymmetric data, which can easily happen when data is entered in different stages, then we would have to use a LEFT JOIN, RIGHT JOIN or FULL JOIN instead to ensure that the data you need is not left out of the results.
 ### Exercise:
+
 List all customers and their orders, including those with no orders.
 
-**Usage**:Select query with LEFT/RIGHT/FULL JOINs on multiple tables
+**Usage**: Select query with LEFT/RIGHT/FULL JOINs on multiple tables
 
 SELECT column, another_column, …
+
 FROM mytable
+
 INNER/LEFT/RIGHT/FULL JOIN another_table
+
     ON mytable.id = another_table.matching_id
+    
 WHERE condition(s)
+
 ORDER BY column, … ASC/DESC
+
 LIMIT num_limit OFFSET num_offset;
 
 ### Exercise 7:
 
-In this exercise, you are going to be working with a new table which stores fictional data about Employees in the film studio and their assigned office Buildings. Some of the buildings are new, so they don't have any employees in them yet, but we need to find some information about them regardless.
+In this exercise, you are going to be working with a new table which stores fictional data about Employees in the film studio and their assigned office Buildings. Some of the buildings are new, so they don't have any employees in them yet, but we need to find some information about them regardless. Since our browser SQL database is somewhat limited, only the LEFT JOIN is supported in the exercise below.
 
-Since our browser SQL database is somewhat limited, only the LEFT JOIN is supported in the exercise below.
-
-Table: Buildings (Read-Only)
+Table: Buildings
 
 | Building_name | Capacity |
 |---------------|----------|
@@ -567,9 +620,7 @@ Table: Buildings (Read-Only)
 | 2e            | 16       |
 | 2w            | 20       |
 
----
-
-Table: Employees (Read-Only)
+Table: Employees
 
 | Role     | Name         | Building | Years_employed |
 |----------|--------------|----------|----------------|
@@ -593,35 +644,42 @@ Exercise 7 — Tasks
 
 1.Find the list of all buildings that have employees
 
-SELECT DISTINCT building FROM employees;
+SELECT DISTINCT building 
+
+FROM employees;
 
 2.Find the list of all buildings and their capacity
 
 SELECT Building, Capacity
+
 FROM buildings;
 
 3. List all buildings and the distinct employee roles in each building (including empty buildings)
 
 SELECT DISTINCT building_name, role
+
 FROM buildings
+
   LEFT JOIN employees
+  
     ON building_name = building;
 
 ---
 
-## SQL Lesson 8: A short note on NULLs
+## Lesson 8: A short note on NULLs
 
-t's always good to reduce the possibility of NULL values in databases because they require special attention when constructing queries, constraints (certain functions behave differently with null values) and when processing the results.
+It's always good to reduce the possibility of NULL values in databases because they require special attention when constructing queries, constraints (certain functions behave differently with null values) and when processing the results. An alternative to NULL values in your database is to have data-type appropriate default values, like 0 for numerical data, empty strings for text data, etc. But if your database needs to store incomplete data, then NULL values can be appropriate if the default values will skew later analysis (for example, when taking averages of numerical data). Sometimes, it's also not possible to avoid NULL values, as we saw in the last lesson when outer-joining two tables with asymmetric data. In these cases, you can test a column for NULL values in a WHERE clause by using either the IS NULL or IS NOT NULL constraint.
 
-An alternative to NULL values in your database is to have data-type appropriate default values, like 0 for numerical data, empty strings for text data, etc. But if your database needs to store incomplete data, then NULL values can be appropriate if the default values will skew later analysis (for example, when taking averages of numerical data).
+**Usage**: Select query with constraints on NULL values
 
-Sometimes, it's also not possible to avoid NULL values, as we saw in the last lesson when outer-joining two tables with asymmetric data. In these cases, you can test a column for NULL values in a WHERE clause by using either the IS NULL or IS NOT NULL constraint.
-
-**Usage**:Select query with constraints on NULL values
 SELECT column, another_column, …
+
 FROM mytable
+
 WHERE column IS/IS NOT NULL
+
 AND/OR another_condition
+
 AND/OR …;
 
 ### Exercise 8:
@@ -636,8 +694,6 @@ Table: Buildings
 | 1w            | 32       |
 | 2e            | 16       |
 | 2w            | 20       |
-
----
 
 Table: Employees
 
@@ -666,35 +722,43 @@ Exercise 8 — Tasks
 1. Find the name and role of all employees who have not been assigned to a building
 
 SELECT name, role FROM employees
+
 WHERE building IS NULL;
 
 2. Find the names of the buildings that hold no employees
 
 SELECT DISTINCT building_name
+
 FROM buildings
+
   LEFT JOIN employees
+  
     ON building_name = building
+    
 WHERE role IS NULL;
 
-## SQL Lesson 9: Queries with expressions
+## Lesson 9: Queries with expressions
 
 Use expressions in SELECT statements to perform calculations on retrieved data.The use of expressions can save time and extra post-processing of the result data, but can also make the query harder to read, so we recommend that when expressions are used in the SELECT part of the query, that they are also given a descriptive alias using the AS keyword.
 
-**Usage**:Select query with expression aliases
+**Usage**: Select query with expression aliases
 
 1.
 SELECT col_expression AS expr_description, …
+
 FROM mytable;
 
 2.
 SELECT column AS better_column_name, …
+
 FROM a_long_widgets_table_name AS mywidgets
+
 INNER JOIN widget_sales
+
   ON mywidgets.id = widget_sales.widget_id;
 
----
-
 ### Exercise 9:
+
 You are going to have to use expressions to transform the BoxOffice data into something easier to understand for the tasks below.
 
 Table: Movies
@@ -715,8 +779,6 @@ Table: Movies
 | 12  | Cars 2                | John Lasseter    | 2011| 120            |
 | 13  | Brave                 | Brenda Chapman   | 2012| 102            |
 | 14  | Monsters University   | Dan Scanlon      | 2013| 110            |
-
----
 
 Table: Boxoffice
 
@@ -744,28 +806,32 @@ Table: Boxoffice
 1. List all movies and their combined sales in millions of dollars
 
 SELECT title, (domestic_sales + international_sales) / 1000000 AS gross_sales_millions
+
 FROM movies
+
   JOIN boxoffice
+  
     ON movies.id = boxoffice.movie_id;
 
 2. List all movies and their ratings in percent
 
 SELECT title, rating * 10 AS rating_percent
+
 FROM movies
+
   JOIN boxoffice
+  
     ON movies.id = boxoffice.movie_id;
 
 3. List all movies that were released on even number years
-## SQL Lesson 10: Queries with aggregates (Pt. 1)
+   
+## Lesson 10: Queries with aggregates (Pt. 1)
 
 SELECT title, year
+
 FROM movies
+
 WHERE year % 2 = 0;
-Introduce aggregate functions for summarizing data.
-
----
-
-## SQL Lesson 10: Queries with aggregates (Pt. 1)
 
 ### 10.1 Common aggregate functions
 
@@ -786,7 +852,7 @@ Introduce aggregate functions for summarizing data.
 In addition to aggregating across all the rows, you can instead apply the aggregate functions to individual groups of data within that group (ie. box office sales for Comedies vs Action movies).
 This would then create as many results as there are unique groups defined as by the GROUP BY clause.
 
-**Usage**:Select query with aggregate functions over groups
+**Usage**: Select query with aggregate functions over groups
 
 SELECT AGG_FUNC(column_or_expression) AS aggregate_description, …
 FROM mytable
@@ -822,34 +888,41 @@ Exercise 10 — Tasks
 1. Find the longest time that an employee has been at the studio
 
 SELECT MAX(years_employed) as Max_years_employed
+
 FROM employees;
 
 2. For each role, find the average number of years employed by employees in that role
 
 SELECT role, AVG(years_employed) as Average_years_employed
+
 FROM employees
+
 GROUP BY role;
 
 3. Find the total number of employee years worked in each building
 
 SELECT building, SUM(years_employed) as Total_years_employed
+
 FROM employees
+
 GROUP BY building;
 
 ---
 
-## SQL Lesson 11: Queries with aggregates (Pt. 2)
+## Lesson 11: Queries with aggregates (Pt. 2)
 
-Our queries are getting fairly complex, but we have nearly introduced all the important parts of a SELECT query. One thing that you might have noticed is that if the GROUP BY clause is executed after the WHERE clause (which filters the rows which are to be grouped), then how exactly do we filter the grouped rows?
-
-Luckily, SQL allows us to do this by adding an additional HAVING clause which is used specifically with the GROUP BY clause to allow us to filter grouped rows from the result set.
+Our queries are getting fairly complex, but we have nearly introduced all the important parts of a SELECT query. One thing that you might have noticed is that if the GROUP BY clause is executed after the WHERE clause (which filters the rows which are to be grouped), then how exactly do we filter the grouped rows? Luckily, SQL allows us to do this by adding an additional HAVING clause which is used specifically with the GROUP BY clause to allow us to filter grouped rows from the result set.
 
 **Usage**:Select query with HAVING constraint
 
 SELECT group_by_column, AGG_FUNC(column_expression) AS aggregate_result_alias, …
+
 FROM mytable
+
 WHERE condition
+
 GROUP BY column
+
 HAVING group_condition;
 
 Exercise
@@ -879,38 +952,53 @@ Exercise — Tasks
 1. Find the number of Artists in the studio (without a HAVING clause)
 
 SELECT role, COUNT(*) as Number_of_artists
+
 FROM employees
+
 WHERE role = "Artist";
 
 2. Find the number of Employees of each role in the studio
 
 SELECT role, COUNT(*)
+
 FROM employees
+
 GROUP BY role;
 
 3. Find the total number of years employed by all Engineers
 
 SELECT role, SUM(years_employed)
+
 FROM employees
+
 GROUP BY role
+
 HAVING role = "Engineer";
 
 ---
 
-## SQL Lesson 12: Order of execution of a Query
+## Lesson 12: Order of execution of a Query
 
 Understand the logical order in which a SQL query is processed.
 
 ***Usage**:Complete SELECT query
 
 SELECT DISTINCT column, AGG_FUNC(column_or_expression), …
+
 FROM mytable
+
     JOIN another_table
+    
       ON mytable.column = another_table.column
+      
     WHERE constraint_expression
+    
     GROUP BY column
+    
     HAVING constraint_expression
+    
     ORDER BY column ASC/DESC
+    
     LIMIT count OFFSET COUNT;
 
 ### Exercise 12:
@@ -933,8 +1021,6 @@ Table: Movies
 | 12  | Cars 2                | John Lasseter    | 2011| 120               |
 | 13  | Brave                 | Brenda Chapman   | 2012| 102               |
 | 14  | Monsters University   | Dan Scanlon      | 2013| 110               |
-
----
 
 Table: Boxoffice
 
@@ -962,18 +1048,24 @@ Exercise 12 — Tasks
 1. Find the number of movies each director has directed
 
 SELECT director, COUNT(id) as Num_movies_directed
+
 FROM movies
+
 GROUP BY director;
 
 2. Find the total domestic and international sales that can be attributed to each director
 
 SELECT director, SUM(domestic_sales + international_sales) as Cumulative_sales_from_all_movies
+
 FROM movies
+
     INNER JOIN boxoffice
+    
         ON movies.id = boxoffice.movie_id
+        
 GROUP BY director;
 
-## SQL Lesson 13: Inserting rows
+## Lesson 13: Inserting rows
 
 Learn how to insert new records into a table.
 
@@ -982,29 +1074,36 @@ Learn how to insert new records into a table.
 1. Insert statement with values for all columns
 
 INSERT INTO mytable
+
 VALUES (value_or_expr, another_value_or_expr, …),
+
        (value_or_expr_2, another_value_or_expr_2, …),
+       
        …;
 
 2. Insert statement with specific columns
 
 INSERT INTO mytable
+
 (column, another_column, …)
+
 VALUES (value_or_expr, another_value_or_expr, …),
+
       (value_or_expr_2, another_value_or_expr_2, …),
+      
       …;
 
 3. Example Insert statement with expressions
 
 INSERT INTO boxoffice
+
 (movie_id, rating, sales_in_millions)
+
 VALUES (1, 9.9, 283742034 / 1000000);
 
 Exercise 13
 
-In this exercise, we are going to play studio executive and add a few movies to the Movies to our portfolio. In this table, the Id is an auto-incrementing integer, so you can try inserting a row with only the other columns defined.
-
-Since the following lessons will modify the database, you'll have to manually run each query once they are ready to go.
+In this exercise, we are going to play studio executive and add a few movies to the Movies to our portfolio. In this table, the Id is an auto-incrementing integer, so you can try inserting a row with only the other columns defined. Since the following lessons will modify the database, you'll have to manually run each query once they are ready to go.
 
 Table: Movies
 
@@ -1014,7 +1113,6 @@ Table: Movies
 | 2  | A Bug's Life  | John Lasseter  | 1998 | 95             |
 | 3  | Toy Story 2   | John Lasseter  | 1999 | 93             |
 
----
 
 | Movie_id | Rating | Domestic_sales | International_sales |
 |----------|--------|-----------------|----------------------|
@@ -1022,26 +1120,30 @@ Table: Movies
 | 1        | 8.3    | 191,796,233     | 170,162,503          |
 | 2        | 7.2    | 162,798,565     | -                    |
 
+
 Exercise 13 — Tasks
+
 1. Add the studio's new production, Toy Story 4 to the list of movies (you can use any director)
 
-INSERT INTO movies VALUES (4, "Toy Story 4", "El Directore", 2015, 90);
+INSERT INTO movies
+
+VALUES (4, "Toy Story 4", "El Directore", 2015, 90);
 
 2. Toy Story 4 has been released to critical acclaim! It had a rating of 8.7, and made 340 million domestically and 270 million internationally. Add the record to the BoxOffice table.
 
-INSERT INTO boxoffice VALUES (4, 8.7, 340000000, 270000000);
+INSERT INTO boxoffice 
+
+VALUES (4, 8.7, 340000000, 270000000);
 
 ---
 
-## SQL Lesson 14: Updating rows
+## Lesson 14: Updating rows
 
 In addition to adding new data, a common task is to update existing data, which can be done using an UPDATE statement. Similar to the INSERT statement, you have to specify exactly which table, columns, and rows to update. In addition, the data you are updating has to match the data type of the columns in the table schema.
 
 **Usage**:Update statement with values
 
 ### Exercise 14:
-
-t looks like some of the information in our Movies database might be incorrect, so go ahead and fix them through the exercises below.
 
 Table: Movies
 
@@ -1069,24 +1171,30 @@ Exercise 14 — Tasks
 1. The director for A Bug's Life is incorrect, it was actually directed by John Lasseter
 
 UPDATE movies
+
 SET director = "John Lasseter"
+
 WHERE id = 2;
 
 2. The year that Toy Story 2 was released is incorrect, it was actually released in 1999
 
 UPDATE movies
+
 SET director = "John Lasseter"
+
 WHERE id = 2;
 
 3. Both the title and director for Toy Story 8 is incorrect! The title should be "Toy Story 3" and it was directed by Lee Unkrich
 
 UPDATE movies
+
 SET title = "Toy Story 3", director = "Lee Unkrich"
+
 WHERE id = 11;
 
 ---
 
-## SQL Lesson 15: Deleting rows
+## Lesson 15: Deleting rows
 
 Explore the process of deleting records from a table.
 
@@ -1126,16 +1234,18 @@ Exercise 15 — Tasks
 1. This database is getting too big, lets remove all movies that were released before 2005.
 
 DELETE FROM movies
+
 where year < 2005;
 
 2. Andrew Stanton has also left the studio, so please remove all movies directed by him.
 
 DELETE FROM movies
+
 where director = "Andrew Stanton";
 
 ---
 
-## SQL Lesson 16: Creating tables
+## Lesson 16: Creating tables
 
 Understand the basics of creating new tables.
 
@@ -1143,7 +1253,9 @@ Understand the basics of creating new tables.
 
 CREATE TABLE IF NOT EXISTS mytable (
     column DataType TableConstraint DEFAULT default_value,
+    
     another_column DataType TableConstraint DEFAULT default_value,
+    
     …
 );
 
@@ -1213,7 +1325,7 @@ CREATE TABLE Database (
     Download_count INTEGER
 );
 
-## SQL Lesson 17: Altering tables
+## Lesson 17: Altering tables
 
 As your data changes over time, SQL provides a way for you to update your corresponding tables and database schemas by using the ALTER TABLE statement to add, remove, or modify columns and table constraints.
 
@@ -1222,7 +1334,9 @@ As your data changes over time, SQL provides a way for you to update your corres
 **Usage**: Altering table to add new column(s)
 
 ALTER TABLE mytable
+
 ADD column DataType OptionalTableConstraint
+
     DEFAULT default_value;
 
 2. Removing columns
@@ -1230,6 +1344,7 @@ ADD column DataType OptionalTableConstraint
 **Usage**: Altering table to remove column(s)
 
 ALTER TABLE mytable
+
 DROP column_to_be_deleted;
 
 3. Renaming the table
@@ -1237,6 +1352,7 @@ DROP column_to_be_deleted;
 **Usage**: Altering table name
 
 ALTER TABLE mytable
+
 RENAME TO new_table_name;
 
 ### Exercise 17:
@@ -1265,16 +1381,18 @@ Exercise 17 — Tasks
 1. Add a column named Aspect_ratio with a FLOAT data type to store the aspect-ratio each movie was released in.
 
 ALTER TABLE Movies
+
   ADD COLUMN Aspect_ratio FLOAT DEFAULT 2.39;
 
 2. Add another column named Language with a TEXT data type to store the language that the movie was released in. Ensure that the default for this language is English.
 
 ALTER TABLE Movies
+
   ADD COLUMN Language TEXT DEFAULT "English";
 
 ---
 
-## SQL Lesson 18: Dropping tables
+## Lesson 18: Dropping tables
 
 In some rare cases, you may want to remove an entire table including all of its data and metadata, and to do so, you can use the DROP TABLE statement, which differs from the DELETE statement in that it also removes the table schema from the database entirely.
 
