@@ -76,23 +76,34 @@ This section outlines a series of SQL queries that can be executed on the "Movie
 
 ### Task 1: Find the Title of Each Film
 
-SELECT Title FROM Movies;
-
+```
+SELECT Title
+FROM Movies;
+```
 ### Task 2: Find the Director of Each Film
 
 SELECT Director FROM Movies;
 
 ### Task 3: Find the Title and Director of Each Film
 
-SELECT Title, Director FROM Movies;
+```
+SELECT Title, Director
+FROM Movies;
+```
 
 ### Task 4: Find the Title and Year of Each Film
 
-SELECT Title, Year FROM Movies;
+```
+SELECT Title, Year
+FROM Movies;
+```
 
 ### Task 5: Find All Information About Each Film
 
-SELECT * FROM Movies;
+```
+SELECT *
+FROM Movies;
+```
 
 ## Task List
 
@@ -267,9 +278,11 @@ Table: Movies
 
 ### Task 1: Find all the Toy Story movies
 
-SELECT title, director FROM movies
-
+```
+SELECT title, director
+FROM movies
 WHERE title LIKE "Toy Story%";
+```
 
 ### Task 2: Find all the movies directed by John Lasseter
 
