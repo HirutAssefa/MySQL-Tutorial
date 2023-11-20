@@ -27,7 +27,6 @@ Welcome to the MySQL practice repository! This guide will walk you through vario
 ## Introduction to MySQL
 
 In this section, you'll get a brief overview of MySQL and its importance in managing and querying relational databases.
----
 
 ## Lesson 1: SELECT queries 101
 
@@ -164,44 +163,51 @@ Below are some useful operators that you can use for numerical data (i.e., integ
     ```
      SELECT column_name
      FROM table_name
-     WHERE col_name BETWEEN 1.5 AND 10.5;
+     WHERE col_name
+     BETWEEN 1.5 AND 10.5;
     ```
    - **NOT BETWEEN ... AND ...**: Number is not within the range of two values (inclusive)
      ```
      SELECT column_name
      FROM table_name
-     WHERE col_name NOT BETWEEN 1 AND 10;
+     WHERE col_name
+     NOT BETWEEN 1 AND 10;
     ```
    - **IN (...)**: Number exists in ...
      ```
      SELECT column_name
      FROM table_name
-     WHERE col_name IN (2, 4, 6);
+     WHERE col_name
+     IN (2, 4, 6);
      
    - **NOT IN (...)**: Number does not exist in a list
-     e.g.
+     ```
      SELECT column_name
      FROM table_name
-     WHERE col_name NOT IN (1, 3, 5);
+     WHERE col_name
+     NOT IN (1, 3, 5);
     ```
    - **LIKE**: Case insensitive exact string comparison
-   ```
+     ```
      SELECT First_Name
      FROM table_name
-     WHERE First_Name LIKE "HIRUT";
+     WHERE First_Name
+     LIKE "HIRUT";
      ```
    - **NOT LIKE**: Case insensitive exact string inequality comparison
-   ```
+     ```
      SELECT First_Name
      FROM table_name
-     WHERE First_Name NOT LIKE "HIRUT";
-  ```
+     WHERE First_Name
+     NOT LIKE "HIRUT";
+     ```
    - **%**: Used anywhere in a string to match a sequence of zero or more characters (only with LIKE or NOT LIKE)
-  ```
+     ```
      SELECT col_name
      FROM table_name
-     WHERE col_name LIKE "%AT%";
-```
+     WHERE col_name
+     LIKE "%AT%";
+     ```
 
 Using the right constraints, find the information we need from the Movies table for each task below
 
@@ -237,17 +243,21 @@ WHERE Id = 6;
 ### Task 2: Find the movies released in the years between 2000 and 2010:
 
 ```
-SELECT * FROM Movies
+SELECT *
+FROM Movies
 WHERE Year
-BETWEEN 2000 AND 2010;
+BETWEEN 2000
+AND 2010;
 ```
 
 ### Task 3: Find the movies not released in the years between 2000 and 2010:
 
 ```
-SELECT * FROM Movies
+SELECT *
+FROM Movies
 WHERE Year
-NOT BETWEEN 2000 AND 2010;
+NOT BETWEEN 2000
+AND 2010;
 ```
 
 ### Task 4: Find the first 5 Pixar movies and their release year:
@@ -289,7 +299,8 @@ Table: Movies
 ```
 SELECT title, director
 FROM movies
-WHERE title LIKE "Toy Story%";
+WHERE title
+LIKE "Toy Story%";
 ```
 
 ### Task 2: Find all the movies directed by John Lasseter
@@ -305,14 +316,17 @@ WHERE Director Like "john Lasseter";
 ```
 SELECT * 
 FROM Movies
-WHERE Director NOT LIKE 'john Lasseter';
+WHERE Director
+NOT LIKE 'john Lasseter';
 ```
 
 ### Task 4: Find all the WALL-* movies
 
 ```
-SELECT * FROM Movies
-WHERE Title LIKE 'WALL%';
+SELECT *
+FROM Movies
+WHERE Title
+LIKE 'WALL%';
 ```
 
 ---
@@ -413,9 +427,11 @@ LIMIT 5 OFFSET 5;
 ```
 SELECT *FROM movies
 ORDER BY title ASC
-LIMIT 5 OFFSET 3;
-SUMMARY EXERCISES
+LIMIT 5
+OFFSET 3;
 ```
+
+### SUMMARY EXERCISES
 
 Table: North_american_cities
 
@@ -445,7 +461,8 @@ Table: North_american_cities
 ```
 SELECT city, Population
 FROM North_american_cities
-WHERE country LIKE 'Canada';
+WHERE country
+LIKE 'Canada';
 ```
 
 **Option 2**
@@ -481,16 +498,17 @@ ORDER BY longitude ASC;
 ```
 SELECT City, Longitude
 FROM North_american_cities
-WHERE Longitude < (SELECT Longitude FROM North_american_cities 
-WHERE City = 'Chicago')
+WHERE Longitude < (SELECT Longitude FROM North_american_cities WHERE City = 'Chicago')
 ORDER BY Longitude ASC;
 ```
 
 ### Task 4: List the two largest cities in Mexico (by population)
 
 ```
-SELECT city, population FROM north_american_cities
-WHERE country LIKE "Mexico"
+SELECT city, population
+FROM north_american_cities
+WHERE country
+LIKE "Mexico"
 ORDER BY population DESC
 LIMIT 2;
 ```
@@ -502,7 +520,8 @@ LIMIT 2;
 ```
 SELECT city, population 
 FROM north_american_cities
-WHERE country LIKE "United States"
+WHERE country
+LIKE "United States"
 ORDER BY population DESC
 LIMIT 2 
 OFFSET 2;
@@ -1297,7 +1316,7 @@ CREATE TABLE IF NOT EXISTS mytable (column DataType TableConstraint DEFAULT defa
 
 2. Numeric Data Types
 
-| Data Type            | Description                                                                                                                                                                                              |
+| Data Type            | Description                                                                                                                                                                                                   |
 |----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | BIT(size)            | A bit-value type. The number of bits per value is specified in size. The size parameter can hold a value from 1 to 64. The default value for size is 1.                                                        |
 | TINYINT(size)        | A very small integer. Signed range is from -128 to 127. Unsigned range is from 0 to 255. The size parameter specifies the maximum display width (which is 255).                                              |
@@ -1313,19 +1332,19 @@ CREATE TABLE IF NOT EXISTS mytable (column DataType TableConstraint DEFAULT defa
 | DOUBLE(size, d)      | A normal-size floating point number. The total number of digits is specified in size. The number of digits after the decimal point is specified in the d parameter.                                          |
 | DOUBLE PRECISION(size, d) |                                                                                                                                            |
 | DECIMAL(size, d)     | An exact fixed-point number. The total number of digits is specified in size. The number of digits after the decimal point is specified in the d parameter. The maximum number for size is 65. The maximum number for d is 30. The default value for size is 10. The default value for d is 0. |
-| DEC(size, d)         | Equal to DECIMAL(size,d).
+| DEC(size, d)         | Equal to DECIMAL(size,d).                                                                                                                                                                                   |
 
----
 
 3. Date and Time Data Types
 
-| Data Type          | Description                                                                                                                                                                                                                                                           |
-|--------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| DATE               | A date. Format: YYYY-MM-DD. The supported range is from '1000-01-01' to '9999-12-31'.                                                                                                                                                                               |
-| DATETIME(fsp)      | A date and time combination. Format: YYYY-MM-DD hh:mm:ss. The supported range is from '1000-01-01 00:00:00' to '9999-12-31 23:59:59'. Adding DEFAULT and ON UPDATE in the column definition to get automatic initialization and updating to the current date and time. |
-| TIMESTAMP(fsp)     | A timestamp. TIMESTAMP values are stored as the number of seconds since the Unix epoch ('1970-01-01 00:00:00' UTC). Format: YYYY-MM-DD hh:mm:ss. The supported range is from '1970-01-01 00:00:01' UTC to '2038-01-09 03:14:07' UTC. Automatic initialization and updating to the current date and time can be specified using DEFAULT CURRENT_TIMESTAMP and ON UPDATE CURRENT_TIMESTAMP in the column definition. |
-| TIME(fsp)          | A time. Format: hh:mm:ss. The supported range is from '-838:59:59' to '838:59:59'.                                                                                                                                                                 |
-| YEAR               | A year in four-digit format. Values allowed in four-digit format: 1901 to 2155, and 0000. MySQL 8.0 does not support the year in two-digit format.                                                                                                                   |
+| Data Type          | Description                                                                                                                                                                                                   |
+|---------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| DATE                | A date. Format: YYYY-MM-DD. The supported range is from '1000-01-01' to '9999-12-31'.                                                                                                                      |
+| DATETIME(fsp)       | A date and time combination. Format: YYYY-MM-DD hh:mm:ss. The supported range is from '1000-01-01 00:00:00' to '9999-12-31 23:59:59'. Adding DEFAULT and ON UPDATE in the column definition to get automatic initialization and updating to the current date and time. |
+| TIMESTAMP(fsp)      | A timestamp. TIMESTAMP values are stored as the number of seconds since the Unix epoch ('1970-01-01 00:00:00' UTC). Format: YYYY-MM-DD hh:mm:ss. The supported range is from '1970-01-01 00:00:01' UTC to '2038-01-09 03:14:07' UTC. Automatic initialization and updating to the current date and time can be specified using DEFAULT CURRENT_TIMESTAMP and ON UPDATE CURRENT_TIMESTAMP in the column definition. |
+| TIME(fsp)           | A time. Format: hh:mm:ss. The supported range is from '-838:59:59' to '838:59:59'.                                                                                                                        |
+| YEAR                | A year in four-digit format. Values allowed in four-digit format: 1901 to 2155, and 0000. MySQL 8.0 does not support the year in two-digit format.                                                                                                                   |
+
 
 ---
 
