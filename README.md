@@ -76,27 +76,27 @@ This section outlines a series of SQL queries that can be executed on the "Movie
 
 ### Task 1: Find the Title of Each Film
 
-```sql
+
 SELECT Title FROM Movies;
 
 ### Task 2: Find the Director of Each Film
 
-```sql
+
 SELECT Director FROM Movies;
 
 ### Task 3: Find the Title and Director of Each Film
 
-```sql
+
 SELECT Title, Director FROM Movies;
 
 ### Task 4:Find the Title and Year of Each Film
 
-```sql
+
 SELECT Title, Year FROM Movies;
 
 ### Task 5:Find All Information About Each Film
 
-```sql
+
 SELECT * FROM Movies;
 
 ## Task List
@@ -108,8 +108,10 @@ This section provides a set of SQL queries that can be executed on the "Movies" 
 - 🎬🎥**Task 3:** Find the Title and Director of Each Film
 - 📅🎬**Task 4:** Find the Title and Year of Each Film
 - 📚**Task 5:** Find All Information About Each Film
+
 ---
-## SQL Lesson 2: Queries with constraints
+
+## Lesson 2: Queries with constraints
 
 Explore the use of WHERE clause to filter data based on specific conditions.
 
@@ -122,112 +124,73 @@ Below are some useful operators that you can use for numerical data (i.e., integ
 - **Standard Numerical Operators**: These operators are used for standard numerical comparisons:
 
    - `=`: Equal to
-
-     ```sql
-     col_name = 90;
-     ```
-
+     
    - `!=`: Not equal to
-
-     ```sql
-     col_name != 4;
-     ```
-
+     
    - `<`: Less than
-
-     ```sql
+     e.g. 
      SELECT column_name
      FROM table_name
      WHERE column_name < 42;
-     ```
-
+     
    - `<=`: Less than or equal to
-
-     ```sql
+     e.g.
      SELECT column_name
      FROM table_name
      WHERE column_name <= 42;
-     ```
-
+     
    - `>`: Greater than
-
-     ```sql
+     e.g.
      SELECT column_name
      FROM table_name
      WHERE column_name > 42;
-     ```
-
+     
    - `>=`: Greater than or equal to
-
-     ```sql
+     e.g.
      SELECT column_name
      FROM table_name
      WHERE column_name >= 42;
-     ```
-
+   
    - **BETWEEN ... AND ...**: Number is within the range of two values (inclusive)
-
-     ```sql
+     e.g.
      SELECT column_name
      FROM table_name
      WHERE col_name BETWEEN 1.5 AND 10.5;
-     ```
-
+     
    - **NOT BETWEEN ... AND ...**: Number is not within the range of two values (inclusive)
-
-     ```sql
+     e.g.
      SELECT column_name
      FROM table_name
      WHERE col_name NOT BETWEEN 1 AND 10;
-     ```
-
-   - **IN (...)**: Number exists in a
-
-     ```sql
+    
+   - **IN (...)**: Number exists in ...
+     e.g.
      SELECT column_name
      FROM table_name
      WHERE col_name IN (2, 4, 6);
-     ```
-
+     
    - **NOT IN (...)**: Number does not exist in a list
-
-     ```sql
+     e.g.
      SELECT column_name
      FROM table_name
      WHERE col_name NOT IN (1, 3, 5);
-     ```
-
-   - `LIKE`: Case insensitive exact string comparison
-
-     ```sql
+    
+   - **LIKE**: Case insensitive exact string comparison
+    e.g.
      SELECT First_Name
      FROM table_name
      WHERE First_Name LIKE "HIRUT";
-     ```
-
-   - `NOT LIKE`: Case insensitive exact string inequality comparison
-
-     ```sql
+     
+   - **NOT LIKE**: Case insensitive exact string inequality comparison
+     e.g.
      SELECT First_Name
      FROM table_name
      WHERE First_Name NOT LIKE "HIRUT";
-     ```
-
-   - `%`: Used anywhere in a string to match a sequence of zero or more characters (only with LIKE or NOT LIKE)
-
-     ```sql
+  
+   - **%**: Used anywhere in a string to match a sequence of zero or more characters (only with LIKE or NOT LIKE)
      SELECT col_name
      FROM table_name
      WHERE col_name LIKE "%AT%";
-     ```
-
-   - `_`: Used anywhere in a string to match a single character (only with LIKE or NOT LIKE)
-
-     ```sql
-     SELECT col_name
-     FROM table_name
-     WHERE col_name LIKE "AN_";
-     ```
 
 Using the right constraints, find the information we need from the Movies table for each task below
 
