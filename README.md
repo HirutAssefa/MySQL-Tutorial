@@ -1,35 +1,35 @@
-# MySQL Practice README
+# MySQL
 
 Welcome to the MySQL Practice Repository! This guide will walk you through various SQL lessons with practical exercises, designed to enhance your skills in interacting with databases using MySQL.
 
 ## Table of Contents
 
 1. [Introduction to SQL](#introduction-to-sql)
-2. [SQL Lesson 1: SELECT queries 101](#sql-lesson-1-select-queries-101)
-3. [SQL Lesson 2: Queries with constraints (Pt. 1)](#sql-lesson-2-queries-with-constraints-pt-1)
-4. [SQL Lesson 3: Queries with constraints (Pt. 2)](#sql-lesson-3-queries-with-constraints-pt-2)
-5. [SQL Lesson 4: Filtering and sorting Query results](#sql-lesson-4-filtering-and-sorting-query-results)
-6. [SQL Review: Simple SELECT Queries](#sql-review-simple-select-queries)
-7. [SQL Lesson 6: Multi-table queries with JOINs](#sql-lesson-6-multi-table-queries-with-joins)
-8. [SQL Lesson 7: OUTER JOINs](#sql-lesson-7-outer-joins)
-9. [SQL Lesson 8: A short note on NULLs](#sql-lesson-8-a-short-note-on-nulls)
-10. [SQL Lesson 9: Queries with expressions](#sql-lesson-9-queries-with-expressions)
-11. [SQL Lesson 10: Queries with aggregates (Pt. 1)](#sql-lesson-10-queries-with-aggregates-pt-1)
-12. [SQL Lesson 11: Queries with aggregates (Pt. 2)](#sql-lesson-11-queries-with-aggregates-pt-2)
-13. [SQL Lesson 12: Order of execution of a Query](#sql-lesson-12-order-of-execution-of-a-query)
-14. [SQL Lesson 13: Inserting rows](#sql-lesson-13-inserting-rows)
-15. [SQL Lesson 14: Updating rows](#sql-lesson-14-updating-rows)
-16. [SQL Lesson 15: Deleting rows](#sql-lesson-15-deleting-rows)
-17. [SQL Lesson 16: Creating tables](#sql-lesson-16-creating-tables)
-18. [SQL Lesson 17: Altering tables](#sql-lesson-17-altering-tables)
-19. [SQL Lesson 18: Dropping tables](#sql-lesson-18-dropping-tables)
+2. [Lesson 1: SELECT queries 101](#lesson-1-select-queries-101)
+3. [Lesson 2: Queries with constraints (Pt. 1)](#lesson-2-queries-with-constraints-pt-1)
+4. [Lesson 3: Queries with constraints (Pt. 2)](#lesson-3-queries-with-constraints-pt-2)
+5. [Lesson 4: Filtering and sorting Query results](#lesson-4-filtering-and-sorting-query-results)
+6. [MySQL Review: Simple SELECT Queries](#Mysql-review-simple-select-queries)
+7. [Lesson 6: Multi-table queries with JOINs](#lesson-6-multi-table-queries-with-joins)
+8. [Lesson 7: OUTER JOINs](lesson-7-outer-joins)
+9. [Lesson 8: A short note on NULLs](lesson-8-a-short-note-on-nulls)
+10. [Lesson 9: Queries with expressions](lesson-9-queries-with-expressions)
+11. [Lesson 10: Queries with aggregates (Pt. 1)](lesson-10-queries-with-aggregates-pt-1)
+12. [Lesson 11: Queries with aggregates (Pt. 2)](lesson-11-queries-with-aggregates-pt-2)
+13. [Lesson 12: Order of execution of a Query](lesson-12-order-of-execution-of-a-query)
+14. [Lesson 13: Inserting rows](lesson-13-inserting-rows)
+15. [Lesson 14: Updating rows](lesson-14-updating-rows)
+16. [Lesson 15: Deleting rows](lesson-15-deleting-rows)
+17. [Lesson 16: Creating tables](lesson-16-creating-tables)
+18. [Lesson 17: Altering tables](lesson-17-altering-tables)
+19. [Lesson 18: Dropping tables](lesson-18-dropping-tables)
 
-## Introduction to SQL
+## Introduction to MySQL
 
-In this section, you'll get a brief overview of SQL and its importance in managing and querying relational databases.
+In this section, you'll get a brief overview of MySQL and its importance in managing and querying relational databases.
 ---
 
-## SQL Lesson 1: SELECT queries 101
+## Lesson 1: SELECT queries 101
 
 Learn the basics of retrieving data from a single table using SELECT statements.
 
@@ -37,7 +37,7 @@ Learn the basics of retrieving data from a single table using SELECT statements.
 
 ## Overview
 
-This README offers a succinct introduction to the SQL table, "Movies." This table is designed to facilitate the storage and retrieval of comprehensive information regarding various films. It encompasses key data fields, including a unique identifier, film title, director, release year, and film duration in minutes.
+This README offers a succinct introduction to the MySQL table, "Movies." This table is designed to facilitate the storage and retrieval of comprehensive information regarding various films. It encompasses key data fields, including a unique identifier, film title, director, release year, and film duration in minutes.
 
 ## Table Structure
 
@@ -76,26 +76,21 @@ This section outlines a series of SQL queries that can be executed on the "Movie
 
 ### Task 1: Find the Title of Each Film
 
-
 SELECT Title FROM Movies;
 
 ### Task 2: Find the Director of Each Film
-
 
 SELECT Director FROM Movies;
 
 ### Task 3: Find the Title and Director of Each Film
 
-
 SELECT Title, Director FROM Movies;
 
-### Task 4:Find the Title and Year of Each Film
-
+### Task 4: Find the Title and Year of Each Film
 
 SELECT Title, Year FROM Movies;
 
-### Task 5:Find All Information About Each Film
-
+### Task 5: Find All Information About Each Film
 
 SELECT * FROM Movies;
 
@@ -217,33 +212,25 @@ Table: Movies
 
 ### Task 1: Find the movie with a row id of 6:
 
-```sql
 SELECT * FROM Movies
 WHERE Id = 6;
-```
 
 ### Task 2: Find the movies released in the years between 2000 and 2010:
 
-```sql
 SELECT * FROM Movies
 WHERE Year
 BETWEEN 2000 AND 2010;
-```
 
 ### Task 3: Find the movies not released in the years between 2000 and 2010:
 
-```sql
 SELECT * FROM Movies
 WHERE Year
 NOT BETWEEN 2000 AND 2010;
-```
 
 ### Task 4:Find the first 5 Pixar movies and their release year:
 
-```sql
 SELECT title, year FROM movies
 WHERE year <= 2003;
-```
 
 ## SQL Lesson 3: Queries with constraints (Pt. 2)
 
@@ -273,49 +260,46 @@ Table: Movies
 
 ### Task 1: Find all the Toy Story movies
 
-```sql
 SELECT title, director FROM movies
 WHERE title LIKE "Toy Story%";
 
 ### Task 2: Find all the movies directed by John Lasseter
 
-```sql
 SELECT * FROM Movies
 WHERE Director Like "john Lasseter";
 
 ### Task 3: Find all the movies (and director) not directed by John Lasseter
 
-```sql
 SELECT * FROM Movies
 WHERE Director NOT LIKE 'john Lasseter';
 
 ### Task 4: Find all the WALL-* movies
 
-```sql
 SELECT * FROM Movies
 WHERE Title LIKE 'WALL%';
 
 ---
+
 ## SQL Lesson 4: Filtering and sorting Query results
 
 Learn how to order and filter query results to meet specific requirements.
 
 4.1 Select query with unique results (DISTINCT remove duplicates)
 
-- SELECT DISTINCT column, another_column, …
+SELECT DISTINCT column, another_column, …
 FROM mytable
 WHERE condition(s);
 
 4.2 Select query with unique results (DISTINCT remove duplicates)
 
--SELECT column, another_column, …
+SELECT column, another_column, …
 FROM mytable
 WHERE condition(s)
 ORDER BY column ASC/DESC;
 
 4.3 Select query with limited rows
 
--SELECT column, another_column, …
+SELECT column, another_column, …
 FROM mytable
 WHERE condition(s)
 ORDER BY column ASC/DESC
@@ -325,22 +309,23 @@ LIMIT num_limit OFFSET num_offset;;
 
 Table: Movies
 
-| Id  | Title                         | Director                  | Year | Length_minutes |
-| --- | -------------------         | ----------------            | ----    | -------------- |
-| 1   | Finding Nemo         | Andrew Stanton      | 2003 | 107            |
-| 2   | WALL-E                  | Andrew Stanton       | 2008 | 104            |
-| 3   | A Bug's Life            | John Lasseter           | 1998 | 95             |
-| 4   | Monsters, Inc.         | Pete Docter             | 2001 | 92             |
-| 5   | Monsters University| Dan Scanlon      | 2013 | 110            |
-| 6   | Toy Story 3              | Lee Unkrich      | 2010 | 103            |
-| 7   | Cars 2                     | John Lasseter    | 2011 | 120            |
-| 8   | Ratatouille               | Brad Bird        | 2007 | 115            |
-| 9   | Cars                         | John Lasseter    | 2006 | 117            |
-| 10  | The Incredibles       | Brad Bird        | 2004 | 116            |
-| 11  | Toy Story                 | John Lasseter    | 1995 | 81             |
-| 12  | Brave                      | Brenda Chapman   | 2012 | 102            |
-| 13  | Toy Story 2              | John Lasseter    | 1999 | 93             |
-| 14  | Up                           | Pete Docter      | 2009 | 101            |
+| Id  | Title                 | Director            | Year | Length_minutes |
+| --- | --------------------- | ------------------- | ---- | -------------- |
+| 1   | Finding Nemo          | Andrew Stanton      | 2003 | 107            |
+| 2   | WALL-E                | Andrew Stanton      | 2008 | 104            |
+| 3   | A Bug's Life          | John Lasseter       | 1998 | 95             |
+| 4   | Monsters, Inc.        | Pete Docter          | 2001 | 92            |
+| 5   | Monsters University   | Dan Scanlon          | 2013 | 110           |
+| 6   | Toy Story 3           | Lee Unkrich          | 2010 | 103           |
+| 7   | Cars 2                | John Lasseter       | 2011 | 120            |
+| 8   | Ratatouille           | Brad Bird            | 2007 | 115            |
+| 9   | Cars                  | John Lasseter       | 2006 | 117            |
+| 10  | The Incredibles       | Brad Bird            | 2004 | 116            |
+| 11  | Toy Story             | John Lasseter       | 1995 | 81             |
+| 12  | Brave                 | Brenda Chapman       | 2012 | 102            |
+| 13  | Toy Story 2           | John Lasseter       | 1999 | 93             |
+| 14  | Up                    | Pete Docter          | 2009 | 101            |
+
 
 ## Task List
 
