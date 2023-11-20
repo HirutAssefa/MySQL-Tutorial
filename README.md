@@ -1,6 +1,6 @@
 # MySQL
 
-Welcome to the MySQL Practice Repository! This guide will walk you through various SQL lessons with practical exercises, designed to enhance your skills in interacting with databases using MySQL.
+Welcome to the MySQL practice repository! This guide will walk you through various SQL lessons with practical exercises, designed to enhance your skills in interacting with databases using MySQL.
 
 ## Table of Contents
 
@@ -82,7 +82,10 @@ FROM Movies;
 ```
 ### Task 2: Find the Director of Each Film
 
-SELECT Director FROM Movies;
+```
+SELECT Director 
+FROM Movies;
+```
 
 ### Task 3: Find the Title and Director of Each Film
 
@@ -134,17 +137,17 @@ Below are some useful operators that you can use for numerical data (i.e., integ
    - `!=`: Not equal to
      
    - `<`: Less than
-     e.g. 
+     ```
      SELECT column_name
      FROM table_name
      WHERE column_name < 42;
-     
+     ```
    - `<=`: Less than or equal to
-     e.g.
+    ```
      SELECT column_name
      FROM table_name
      WHERE column_name <= 42;
-     
+     ```
    - `>`: Greater than
      e.g.
      SELECT column_name
@@ -152,25 +155,25 @@ Below are some useful operators that you can use for numerical data (i.e., integ
      WHERE column_name > 42;
      
    - `>=`: Greater than or equal to
-     e.g.
+    ```
      SELECT column_name
      FROM table_name
      WHERE column_name >= 42;
-   
+   ```
    - **BETWEEN ... AND ...**: Number is within the range of two values (inclusive)
-     e.g.
+    ```
      SELECT column_name
      FROM table_name
      WHERE col_name BETWEEN 1.5 AND 10.5;
-     
+    ```
    - **NOT BETWEEN ... AND ...**: Number is not within the range of two values (inclusive)
-     e.g.
+     ```
      SELECT column_name
      FROM table_name
      WHERE col_name NOT BETWEEN 1 AND 10;
-    
+    ```
    - **IN (...)**: Number exists in ...
-     e.g.
+     ```
      SELECT column_name
      FROM table_name
      WHERE col_name IN (2, 4, 6);
@@ -180,23 +183,25 @@ Below are some useful operators that you can use for numerical data (i.e., integ
      SELECT column_name
      FROM table_name
      WHERE col_name NOT IN (1, 3, 5);
-    
+    ```
    - **LIKE**: Case insensitive exact string comparison
-    e.g.
+   ```
      SELECT First_Name
      FROM table_name
      WHERE First_Name LIKE "HIRUT";
-     
+     ```
    - **NOT LIKE**: Case insensitive exact string inequality comparison
-     e.g.
+   ```
      SELECT First_Name
      FROM table_name
      WHERE First_Name NOT LIKE "HIRUT";
-  
+  ```
    - **%**: Used anywhere in a string to match a sequence of zero or more characters (only with LIKE or NOT LIKE)
+  ```
      SELECT col_name
      FROM table_name
      WHERE col_name LIKE "%AT%";
+```
 
 Using the right constraints, find the information we need from the Movies table for each task below
 
@@ -223,32 +228,35 @@ Table: Movies
 
 ### Task 1: Find the movie with a row id of 6:
 
-SELECT * FROM Movies
-
+```
+SELECT * 
+FROM Movies
 WHERE Id = 6;
+```
 
 ### Task 2: Find the movies released in the years between 2000 and 2010:
 
+```
 SELECT * FROM Movies
-
 WHERE Year
-
 BETWEEN 2000 AND 2010;
-
+```
 
 ### Task 3: Find the movies not released in the years between 2000 and 2010:
 
+```
 SELECT * FROM Movies
-
 WHERE Year
-
 NOT BETWEEN 2000 AND 2010;
+```
 
-### Task 4:Find the first 5 Pixar movies and their release year:
+### Task 4: Find the first 5 Pixar movies and their release year:
 
-SELECT title, year FROM movies
-
+```
+SELECT title, year 
+FROM movies
 WHERE year <= 2003;
+```
 
 ## Lesson 3: Queries with constraints (Pt. 2)
 
@@ -286,21 +294,26 @@ WHERE title LIKE "Toy Story%";
 
 ### Task 2: Find all the movies directed by John Lasseter
 
-SELECT * FROM Movies
-
+```
+SELECT * 
+FROM Movies
 WHERE Director Like "john Lasseter";
+```
 
 ### Task 3: Find all the movies (and director) not directed by John Lasseter
 
-SELECT * FROM Movies
-
+```
+SELECT * 
+FROM Movies
 WHERE Director NOT LIKE 'john Lasseter';
+```
 
 ### Task 4: Find all the WALL-* movies
 
+```
 SELECT * FROM Movies
-
 WHERE Title LIKE 'WALL%';
+```
 
 ---
 
@@ -310,33 +323,31 @@ Learn how to order and filter query results to meet specific requirements.
 
 4.1 Select query with unique results (DISTINCT remove duplicates)
 
+```
 SELECT DISTINCT column, another_column, …
-
 FROM mytable
-
 WHERE condition(s);
+```
 
 4.2 Select query with unique results (DISTINCT remove duplicates)
 
+```
 SELECT column, another_column, …
-
 FROM mytable
-
 WHERE condition(s)
-
 ORDER BY column ASC/DESC;
+```
 
 4.3 Select query with limited rows
 
+```
 SELECT column, another_column, …
-
 FROM mytable
-
 WHERE condition(s)
-
 ORDER BY column ASC/DESC
-
-LIMIT num_limit OFFSET num_offset;;
+LIMIT num_limit 
+OFFSET num_offset;;
+```
 
 ### Exercise:
 
@@ -364,43 +375,47 @@ Table: Movies
 
 ### Task 1: List all directors of Pixar movies (alphabetically), without duplicates
 
-SELECT DISTINCT director FROM movies
-
+```
+SELECT DISTINCT director 
+FROM movies
 ORDER BY director ASC;
+```
 
 ### Task 2: List the last four Pixar movies released (ordered from most recent to least)
 
-SELECT title, year FROM movies
-
+```
+SELECT title, year 
+FROM movies
 ORDER BY year DESC
-
 LIMIT 4;
+```
 
 ### Task 3: List the first five Pixar movies sorted alphabetically
 
-SELECT * FROM Movies
-
+```
+SELECT * 
+FROM Movies
 ORDER BY Title ASC
-
 LIMIT 5;
+```
 
 ### Task 4: List the next five Pixar movies sorted alphabetically
 
-SELECT title FROM movies
-
+```
+SELECT title 
+FROM movies
 ORDER BY title ASC
-
 LIMIT 5 OFFSET 5;
+```
 
 ### Task 5: List five movies starting from the 4th row:
 
+```
 SELECT *FROM movies
-
 ORDER BY title ASC
-
 LIMIT 5 OFFSET 3;
-
 SUMMARY EXERCISES
+```
 
 Table: North_american_cities
 
@@ -427,75 +442,81 @@ Table: North_american_cities
 
 **Option 1**
 
+```
 SELECT city, Population
-
 FROM North_american_cities
-
 WHERE country LIKE 'Canada';
+```
 
 **Option 2**
 
-SELECT City, Population FROM North_american_cities
-
+```
+SELECT City, Population 
+FROM North_american_cities
 WHERE Country = 'Canada';
+```
 
 ### Task 2: Order all the cities in the United States by their latitude from north to south
 
-SELECT city, latitude FROM north_american_cities
-
+```
+SELECT city, latitude 
+FROM north_american_cities
 WHERE country = "United States"
-
 ORDER BY latitude DESC;
+```
 
 ### Task 3: List all the cities west of Chicago, ordered from west to east
 
 **option 1**
 
-SELECT city, longitude FROM north_american_cities
-
+```
+SELECT city, longitude 
+FROM north_american_cities
 WHERE longitude < -87.629798
-
 ORDER BY longitude ASC;
+```
 
 **option 2**
 
-SELECT City, Longitude FROM North_american_cities
-
-WHERE Longitude < (SELECT Longitude FROM North_american_cities WHERE City = 'Chicago')
-
+```
+SELECT City, Longitude
+FROM North_american_cities
+WHERE Longitude < (SELECT Longitude FROM North_american_cities 
+WHERE City = 'Chicago')
 ORDER BY Longitude ASC;
+```
 
 ### Task 4: List the two largest cities in Mexico (by population)
 
+```
 SELECT city, population FROM north_american_cities
-
 WHERE country LIKE "Mexico"
-
 ORDER BY population DESC
-
 LIMIT 2;
+```
 
 ### Task 5: List the third and fourth largest cities (by population) in the United States and their population
 
 **option 1**
 
-SELECT city, population FROM north_american_cities
-
+```
+SELECT city, population 
+FROM north_american_cities
 WHERE country LIKE "United States"
-
 ORDER BY population DESC
-
-LIMIT 2 OFFSET 2;
+LIMIT 2 
+OFFSET 2;
+```
 
 **option 2**
 
-SELECT City, Population FROM North_american_cities
-
+```
+SELECT City, Population
+FROM North_american_cities
 WHERE Country = 'United States'
-
 ORDER BY Population DESC
-
 LIMIT 2 OFFSET 2;
+```
 
 ---
 
@@ -509,19 +530,16 @@ Explore JOIN operations to retrieve data from multiple tables. Tables that share
 
 **usage** : Select query with INNER JOIN on multiple tables
 
+```
 SELECT column, another_table_column, …
-
 FROM mytable
-
 INNER JOIN another_table
-
     ON mytable.id = another_table.id
-    
 WHERE condition(s)
-
 ORDER BY column, … ASC/DESC
-
-LIMIT num_limit OFFSET num_offset;
+LIMIT num_limit 
+OFFSET num_offset;
+```
 
 The INNER JOIN is a process that matches rows from the first table and the second table which have the same key (as defined by the ON constraint) to create a result row with the combined columns from both tables. After the tables are joined, the other clauses we learned previously are then applied.
 
@@ -562,37 +580,32 @@ Exercise 6 — Tasks
 
 1. Find the domestic and international sales for each movie
 
+```
 SELECT title, domestic_sales, international_sales
-
 FROM movies
-
   JOIN boxoffice
-  
     ON movies.id = boxoffice.movie_id;
+```
 
 2. Show the sales numbers for each movie that did better internationally rather than domestically
 
+```
 SELECT title, domestic_sales, international_sales
-
 FROM movies
-
   JOIN boxoffice
-  
     ON movies.id = boxoffice.movie_id
-    
 WHERE international_sales > domestic_sales;
+```
 
 3. List all the movies by their ratings in descending order
 
+```
 SELECT title, rating
-
 FROM 
-
   JOIN boxoffice
-  
     ON movies.id = boxoffice.movie_id
-    
 ORDER BY rating DESC;
+```
 
 ---
 
@@ -606,19 +619,16 @@ List all customers and their orders, including those with no orders.
 
 **Usage**: Select query with LEFT/RIGHT/FULL JOINs on multiple tables
 
+```
 SELECT column, another_column, …
-
 FROM mytable
-
 INNER/LEFT/RIGHT/FULL JOIN another_table
-
     ON mytable.id = another_table.matching_id
-    
 WHERE condition(s)
-
 ORDER BY column, … ASC/DESC
-
-LIMIT num_limit OFFSET num_offset;
+LIMIT num_limit 
+OFFSET num_offset;
+```
 
 ### Exercise 7:
 
@@ -657,25 +667,26 @@ Exercise 7 — Tasks
 
 1.Find the list of all buildings that have employees
 
+```
 SELECT DISTINCT building 
-
 FROM employees;
+```
 
 2.Find the list of all buildings and their capacity
 
+```
 SELECT Building, Capacity
-
 FROM buildings;
+```
 
 3. List all buildings and the distinct employee roles in each building (including empty buildings)
 
+```
 SELECT DISTINCT building_name, role
-
 FROM buildings
-
   LEFT JOIN employees
-  
     ON building_name = building;
+```
 
 ---
 
@@ -685,15 +696,13 @@ It's always good to reduce the possibility of NULL values in databases because t
 
 **Usage**: Select query with constraints on NULL values
 
+```
 SELECT column, another_column, …
-
 FROM mytable
-
 WHERE column IS/IS NOT NULL
-
 AND/OR another_condition
-
 AND/OR …;
+```
 
 ### Exercise 8:
 
@@ -734,21 +743,21 @@ Exercise 8 — Tasks
 
 1. Find the name and role of all employees who have not been assigned to a building
 
-SELECT name, role FROM employees
-
+```
+SELECT name, role 
+FROM employees
 WHERE building IS NULL;
+```
 
 2. Find the names of the buildings that hold no employees
 
+```
 SELECT DISTINCT building_name
-
 FROM buildings
-
   LEFT JOIN employees
-  
     ON building_name = building
-    
 WHERE role IS NULL;
+```
 
 ## Lesson 9: Queries with expressions
 
@@ -757,18 +766,20 @@ Use expressions in SELECT statements to perform calculations on retrieved data.T
 **Usage**: Select query with expression aliases
 
 1.
-SELECT col_expression AS expr_description, …
 
+```
+SELECT col_expression AS expr_description, …
 FROM mytable;
+```
 
 2.
+
+```
 SELECT column AS better_column_name, …
-
 FROM a_long_widgets_table_name AS mywidgets
-
 INNER JOIN widget_sales
-
   ON mywidgets.id = widget_sales.widget_id;
+```
 
 ### Exercise 9:
 
@@ -818,33 +829,31 @@ Table: Boxoffice
 
 1. List all movies and their combined sales in millions of dollars
 
+```
 SELECT title, (domestic_sales + international_sales) / 1000000 AS gross_sales_millions
-
 FROM movies
-
   JOIN boxoffice
-  
     ON movies.id = boxoffice.movie_id;
+```
 
 2. List all movies and their ratings in percent
 
+```
 SELECT title, rating * 10 AS rating_percent
-
 FROM movies
-
   JOIN boxoffice
-  
     ON movies.id = boxoffice.movie_id;
+```
 
 3. List all movies that were released on even number years
    
 ## Lesson 10: Queries with aggregates (Pt. 1)
 
+```
 SELECT title, year
-
 FROM movies
-
 WHERE year % 2 = 0;
+```
 
 ### 10.1 Common aggregate functions
 
@@ -867,10 +876,12 @@ This would then create as many results as there are unique groups defined as by 
 
 **Usage**: Select query with aggregate functions over groups
 
+```
 SELECT AGG_FUNC(column_or_expression) AS aggregate_description, …
 FROM mytable
 WHERE constraint_expression
 GROUP BY column;
+```
 
 ### Exercise 10:
 
@@ -900,25 +911,26 @@ Exercise 10 — Tasks
 
 1. Find the longest time that an employee has been at the studio
 
+```
 SELECT MAX(years_employed) as Max_years_employed
-
 FROM employees;
+```
 
 2. For each role, find the average number of years employed by employees in that role
 
+```
 SELECT role, AVG(years_employed) as Average_years_employed
-
 FROM employees
-
 GROUP BY role;
+```
 
 3. Find the total number of employee years worked in each building
 
+```
 SELECT building, SUM(years_employed) as Total_years_employed
-
 FROM employees
-
 GROUP BY building;
+```
 
 ---
 
@@ -928,15 +940,13 @@ Our queries are getting fairly complex, but we have nearly introduced all the im
 
 **Usage**:Select query with HAVING constraint
 
+```
 SELECT group_by_column, AGG_FUNC(column_expression) AS aggregate_result_alias, …
-
 FROM mytable
-
 WHERE condition
-
 GROUP BY column
-
 HAVING group_condition;
+```
 
 Exercise
 
@@ -964,29 +974,28 @@ Exercise — Tasks
 
 1. Find the number of Artists in the studio (without a HAVING clause)
 
+```
 SELECT role, COUNT(*) as Number_of_artists
-
 FROM employees
-
 WHERE role = "Artist";
+```
 
 2. Find the number of Employees of each role in the studio
 
+```
 SELECT role, COUNT(*)
-
 FROM employees
-
 GROUP BY role;
+```
 
 3. Find the total number of years employed by all Engineers
 
+```
 SELECT role, SUM(years_employed)
-
 FROM employees
-
 GROUP BY role
-
 HAVING role = "Engineer";
+```
 
 ---
 
@@ -996,23 +1005,17 @@ Understand the logical order in which a SQL query is processed.
 
 ***Usage**:Complete SELECT query
 
+```
 SELECT DISTINCT column, AGG_FUNC(column_or_expression), …
-
 FROM mytable
-
     JOIN another_table
-    
       ON mytable.column = another_table.column
-      
     WHERE constraint_expression
-    
     GROUP BY column
-    
     HAVING constraint_expression
-    
     ORDER BY column ASC/DESC
-    
     LIMIT count OFFSET COUNT;
+```
 
 ### Exercise 12:
 
@@ -1060,23 +1063,21 @@ Exercise 12 — Tasks
 
 1. Find the number of movies each director has directed
 
+```
 SELECT director, COUNT(id) as Num_movies_directed
-
 FROM movies
-
 GROUP BY director;
+```
 
 2. Find the total domestic and international sales that can be attributed to each director
 
+```
 SELECT director, SUM(domestic_sales + international_sales) as Cumulative_sales_from_all_movies
-
 FROM movies
-
     INNER JOIN boxoffice
-    
         ON movies.id = boxoffice.movie_id
-        
 GROUP BY director;
+```
 
 ## Lesson 13: Inserting rows
 
@@ -1086,33 +1087,27 @@ Learn how to insert new records into a table.
 
 1. Insert statement with values for all columns
 
+```
 INSERT INTO mytable
-
 VALUES (value_or_expr, another_value_or_expr, …),
-
-       (value_or_expr_2, another_value_or_expr_2, …),
-       
-       …;
+       (value_or_expr_2, another_value_or_expr_2, …), …;
+```
 
 2. Insert statement with specific columns
 
-INSERT INTO mytable
-
-(column, another_column, …)
-
+```
+INSERT INTO mytable (column, another_column, …)
 VALUES (value_or_expr, another_value_or_expr, …),
-
       (value_or_expr_2, another_value_or_expr_2, …),
-      
       …;
+```
 
 3. Example Insert statement with expressions
 
-INSERT INTO boxoffice
-
-(movie_id, rating, sales_in_millions)
-
+```
+INSERT INTO boxoffice (movie_id, rating, sales_in_millions)
 VALUES (1, 9.9, 283742034 / 1000000);
+```
 
 Exercise 13
 
@@ -1138,15 +1133,17 @@ Exercise 13 — Tasks
 
 1. Add the studio's new production, Toy Story 4 to the list of movies (you can use any director)
 
+```
 INSERT INTO movies
-
 VALUES (4, "Toy Story 4", "El Directore", 2015, 90);
+```
 
 2. Toy Story 4 has been released to critical acclaim! It had a rating of 8.7, and made 340 million domestically and 270 million internationally. Add the record to the BoxOffice table.
 
+```
 INSERT INTO boxoffice 
-
 VALUES (4, 8.7, 340000000, 270000000);
+```
 
 ---
 
@@ -1183,27 +1180,27 @@ Exercise 14 — Tasks
 
 1. The director for A Bug's Life is incorrect, it was actually directed by John Lasseter
 
+```
 UPDATE movies
-
 SET director = "John Lasseter"
-
 WHERE id = 2;
+```
 
 2. The year that Toy Story 2 was released is incorrect, it was actually released in 1999
 
+```
 UPDATE movies
-
 SET director = "John Lasseter"
-
 WHERE id = 2;
+```
 
 3. Both the title and director for Toy Story 8 is incorrect! The title should be "Toy Story 3" and it was directed by Lee Unkrich
 
+```
 UPDATE movies
-
 SET title = "Toy Story 3", director = "Lee Unkrich"
-
 WHERE id = 11;
+```
 
 ---
 
@@ -1213,13 +1210,17 @@ Explore the process of deleting records from a table.
 
 **Usage**:Delete statement with condition
 
+```
 DELETE FROM mytable
 WHERE condition;
+```
 
 ### Exercise 15:
 
+```
 DELETE FROM mytable
 WHERE condition;
+```
 
 Table: Movies
 
@@ -1246,15 +1247,17 @@ Exercise 15 — Tasks
 
 1. This database is getting too big, lets remove all movies that were released before 2005.
 
+```
 DELETE FROM movies
-
 where year < 2005;
+```
 
 2. Andrew Stanton has also left the studio, so please remove all movies directed by him.
 
+```
 DELETE FROM movies
-
 where director = "Andrew Stanton";
+```
 
 ---
 
@@ -1264,13 +1267,10 @@ Understand the basics of creating new tables.
 
 **Usage**:Create table statement w/ optional table constraint and default value
 
-CREATE TABLE IF NOT EXISTS mytable (
-    column DataType TableConstraint DEFAULT default_value,
-    
-    another_column DataType TableConstraint DEFAULT default_value,
-    
-    …
+```
+CREATE TABLE IF NOT EXISTS mytable (column DataType TableConstraint DEFAULT default_value, another_column DataType TableConstraint DEFAULT default_value, …
 );
+```
 
 ### Data types in MySQL
 
@@ -1313,7 +1313,11 @@ CREATE TABLE IF NOT EXISTS mytable (
 | DOUBLE(size, d)      | A normal-size floating point number. The total number of digits is specified in size. The number of digits after the decimal point is specified in the d parameter.                                          |
 | DOUBLE PRECISION(size, d) |                                                                                                                                            |
 | DECIMAL(size, d)     | An exact fixed-point number. The total number of digits is specified in size. The number of digits after the decimal point is specified in the d parameter. The maximum number for size is 65. The maximum number for d is 30. The default value for size is 10. The default value for d is 0. |
-| DEC(size, d)         | Equal to DECIMAL(size,d).                                                     3. Date and Time Data Types
+| DEC(size, d)         | Equal to DECIMAL(size,d).
+
+---
+
+3. Date and Time Data Types
 
 | Data Type          | Description                                                                                                                                                                                                                                                           |
 |--------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -1332,11 +1336,13 @@ CREATE TABLE IF NOT EXISTS mytable (
 – Version A number (floating point) of the latest version of this database
 – Download_count An integer count of the number of times this database was downloaded
 
+```
 CREATE TABLE Database (
     Name TEXT,
     Version FLOAT,
     Download_count INTEGER
 );
+```
 
 ## Lesson 17: Altering tables
 
@@ -1346,27 +1352,29 @@ As your data changes over time, SQL provides a way for you to update your corres
 
 **Usage**: Altering table to add new column(s)
 
+```
 ALTER TABLE mytable
-
 ADD column DataType OptionalTableConstraint
-
     DEFAULT default_value;
+```
 
 2. Removing columns
 
 **Usage**: Altering table to remove column(s)
 
+```
 ALTER TABLE mytable
-
 DROP column_to_be_deleted;
+```
 
 3. Renaming the table
 
 **Usage**: Altering table name
 
+```
 ALTER TABLE mytable
-
 RENAME TO new_table_name;
+```
 
 ### Exercise 17:
 
@@ -1393,15 +1401,16 @@ Exercise 17 — Tasks
 
 1. Add a column named Aspect_ratio with a FLOAT data type to store the aspect-ratio each movie was released in.
 
+```
 ALTER TABLE Movies
-
   ADD COLUMN Aspect_ratio FLOAT DEFAULT 2.39;
-
+```
 2. Add another column named Language with a TEXT data type to store the language that the movie was released in. Ensure that the default for this language is English.
 
+```
 ALTER TABLE Movies
-
   ADD COLUMN Language TEXT DEFAULT "English";
+```
 
 ---
 
@@ -1411,7 +1420,9 @@ In some rare cases, you may want to remove an entire table including all of its 
 
 **Usage**:Drop table statement
 
+```
 DROP TABLE IF EXISTS mytable;
+```
 
 **NOTE**: Like the CREATE TABLE statement, the database may throw an error if the specified table does not exist, and to suppress that error, you can use the IF EXISTS clause.
 
@@ -1464,8 +1475,12 @@ Exercise 18 — Tasks
 
 1. We've sadly reached the end of our lessons, lets clean up by removing the Movies table
 
+```
 DROP TABLE Movies;
+```
 
 2. And drop the BoxOffice table as well
 
+```
 DROP TABLE BoxOffice;
+```
