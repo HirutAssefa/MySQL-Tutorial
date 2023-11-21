@@ -177,15 +177,13 @@ Below are some useful operators that you can use for numerical data (i.e., integ
      ```
      SELECT column_name
      FROM table_name
-     WHERE col_name
-     IN (2, 4, 6);
+     WHERE col_name IN (2, 4, 6);
      
    - **NOT IN (...)**: Number does not exist in a list
      ```
      SELECT column_name
      FROM table_name
-     WHERE col_name
-     NOT IN (1, 3, 5);
+     WHERE col_name NOT IN (1, 3, 5);
     ```
    - **LIKE**: Case insensitive exact string comparison
      ```
@@ -205,8 +203,7 @@ Below are some useful operators that you can use for numerical data (i.e., integ
      ```
      SELECT col_name
      FROM table_name
-     WHERE col_name
-     LIKE "%AT%";
+     WHERE col_name LIKE "%AT%";
      ```
 
 Using the right constraints, find the information we need from the Movies table for each task below
@@ -246,8 +243,7 @@ WHERE Id = 6;
 SELECT *
 FROM Movies
 WHERE Year
-BETWEEN 2000
-AND 2010;
+BETWEEN 2000 AND 2010;
 ```
 
 ### Task 3: Find the movies not released in the years between 2000 and 2010:
@@ -256,8 +252,7 @@ AND 2010;
 SELECT *
 FROM Movies
 WHERE Year
-NOT BETWEEN 2000
-AND 2010;
+NOT BETWEEN 2000 AND 2010;
 ```
 
 ### Task 4: Find the first 5 Pixar movies and their release year:
@@ -308,7 +303,8 @@ LIKE "Toy Story%";
 ```
 SELECT * 
 FROM Movies
-WHERE Director Like "john Lasseter";
+WHERE Director
+LIKE "john Lasseter";
 ```
 
 ### Task 3: Find all the movies (and director) not directed by John Lasseter
@@ -427,8 +423,7 @@ LIMIT 5 OFFSET 5;
 ```
 SELECT *FROM movies
 ORDER BY title ASC
-LIMIT 5
-OFFSET 3;
+LIMIT 5 OFFSET 3;
 ```
 
 ### SUMMARY EXERCISES
@@ -523,8 +518,7 @@ FROM north_american_cities
 WHERE country
 LIKE "United States"
 ORDER BY population DESC
-LIMIT 2 
-OFFSET 2;
+LIMIT 2 OFFSET 2;
 ```
 
 **option 2**
@@ -556,8 +550,7 @@ INNER JOIN another_table
     ON mytable.id = another_table.id
 WHERE condition(s)
 ORDER BY column, … ASC/DESC
-LIMIT num_limit 
-OFFSET num_offset;
+LIMIT num_limit OFFSET num_offset;
 ```
 
 The INNER JOIN is a process that matches rows from the first table and the second table which have the same key (as defined by the ON constraint) to create a result row with the combined columns from both tables. After the tables are joined, the other clauses we learned previously are then applied.
@@ -566,35 +559,34 @@ The INNER JOIN is a process that matches rows from the first table and the secon
 
 We've added a new table to the Pixar database so that you can try practicing some joins. The BoxOffice table stores information about the ratings and sales of each particular Pixar movie, and the Movie_id column in that table corresponds with the Id column in the Movies table 1-to-1. Try and solve the tasks below using the INNER JOIN introduced above.
 
-Table: Movies 
-
-| Id | Title           | Director       | Year | Length_minutes |
-|----|-----------------|-----------------|------|----------------|
-| 1  | Toy Story       | John Lasseter   | 1995 | 81             |
-| 2  | A Bug's Life    | John Lasseter   | 1998 | 95             |
-| 3  | Toy Story 2     | John Lasseter   | 1999 | 93             |
-| 4  | Monsters, Inc.  | Pete Docter     | 2001 | 92             |
-
-
-Table: Boxoffice 
-
-| Movie_id | Rating | Domestic_sales | International_sales |
-|----------|--------|-----------------|----------------------|
-| 5        | 8.2    | 380,843,261     | 555,900,000          |
-| 14       | 7.4    | 268,492,764     | 475,066,843          |
-| 8        | 8      | 206,445,654     | 417,277,164          |
-| 12       | 6.4    | 191,452,396     | 368,400,000          |
-| 3        | 7.9    | 245,852,179     | 239,163,000          |
-| 6        | 8      | 261,441,092     | 370,001,000          |
-| 9        | 8.5    | 223,808,164     | 297,503,696          |
-| 11       | 8.4    | 415,004,880     | 648,167,031          |
-| 1        | 8.3    | 191,796,233     | 170,162,503          |
-| 7        | 7.2    | 244,082,982     | 217,900,167          |
-| 10       | 8.3    | 293,004,164     | 438,338,580          |
-| 4        | 8.1    | 289,916,256     | 272,900,000          |
-| 2        | 7.2    | 162,798,565     | 200,600,000          |
-| 13       | 7.2    | 237,283,207     | 301,700,000          |
-
+  Table: Movies 
+  
+   | Id | Title           | Director       | Year | Length_minutes |
+   |----|-----------------|-----------------|------|----------------|
+   | 1  | Toy Story       | John Lasseter   | 1995 | 81             |
+   | 2  | A Bug's Life    | John Lasseter   | 1998 | 95             |
+   | 3  | Toy Story 2     | John Lasseter   | 1999 | 93             |
+   | 4  | Monsters, Inc.  | Pete Docter     | 2001 | 92             |
+ 
+   Table: Boxoffice 
+   
+   | Movie_id | Rating | Domestic_sales | International_sales |
+   |----------|--------|-----------------|----------------------|
+   | 5        | 8.2    | 380,843,261     | 555,900,000          |
+   | 14       | 7.4    | 268,492,764     | 475,066,843          |
+   | 8        | 8      | 206,445,654     | 417,277,164          |
+   | 12       | 6.4    | 191,452,396     | 368,400,000          |
+   | 3        | 7.9    | 245,852,179     | 239,163,000          |
+   | 6        | 8      | 261,441,092     | 370,001,000          |
+   | 9        | 8.5    | 223,808,164     | 297,503,696          |
+   | 11       | 8.4    | 415,004,880     | 648,167,031          |
+   | 1        | 8.3    | 191,796,233     | 170,162,503          |
+   | 7        | 7.2    | 244,082,982     | 217,900,167          |
+   | 10       | 8.3    | 293,004,164     | 438,338,580          |
+   | 4        | 8.1    | 289,916,256     | 272,900,000          |
+   | 2        | 7.2    | 162,798,565     | 200,600,000          |
+   | 13       | 7.2    | 237,283,207     | 301,700,000          |
+ 
 Exercise 6 — Tasks
 
 1. Find the domestic and international sales for each movie
@@ -645,8 +637,7 @@ INNER/LEFT/RIGHT/FULL JOIN another_table
     ON mytable.id = another_table.matching_id
 WHERE condition(s)
 ORDER BY column, … ASC/DESC
-LIMIT num_limit 
-OFFSET num_offset;
+LIMIT num_limit OFFSET num_offset;
 ```
 
 ### Exercise 7:
